@@ -1,0 +1,44 @@
+services:
+  php-apache:
+    build:
+      context: ./php
+    container_name: php-apache
+    ports:
+      - "${APACHE_PORT}:80"
+    volumes:
+      - ${APACHE_HTDOCS}:/var/www/html
+      - ${APACHE_CONF}/php.ini:/usr/local/etc/php/php.ini
+      - ${APACHE_CONF}/apache-config:/etc/apache2/sites-available
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      APACHE_RUN_USER: www-data
+      APACHE_RUN_GROUP: www-data
+    depends_on:
+      - db
+    command: >
+      sh -c "a2ensite frontend.conf && 
+             a2ensite backend.conf && 
+             a2ensite api.conf &&
+             apache2-foreground"
+
+  db:
+    image: mariadb:${MARIADB_VERSION}
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ${MARIADB_LOCAL_DIR}${MARIADB_DATA_DIR}:/var/lib/mysql
+      - ${MARIADB_LOCAL_DIR}${MARIADB_CONF_DIR}:/etc/mysql/conf.d
+      - ${MARIADB_LOCAL_DIR}${MARIADB_ETC_DIR}:/etc/mysql
+    ports:
+      - ${MYSQL_PORT}:3306
+
+volumes:
+  db_data:
