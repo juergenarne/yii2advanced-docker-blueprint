@@ -6,7 +6,7 @@
 git clone https://juergenarne@github.com/juergenarne/yii2advanced-docker-blueprint.git .
 ```
 
-*Start*
+**Start:**
 
 ```bash
 docker-compose up --build -d
