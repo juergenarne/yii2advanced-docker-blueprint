@@ -1,6 +1,6 @@
 FROM php:8.0-apache
 
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
     git \
     libpq-dev \
     libpng-dev \
@@ -16,6 +16,7 @@ RUN apt-get install -y \
     libmemcached-dev \
     libmagickwand-dev \
     zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure intl \ 
     && docker-php-ext-install -j$(nproc) \
