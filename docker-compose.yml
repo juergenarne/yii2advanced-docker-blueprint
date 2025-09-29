@@ -1,7 +1,7 @@
 services:
   php-apache:
     build:
-      context: ./php
+      context: ./apache
     container_name: php-apache
     ports:
       - "${APACHE_PORT}:80"
@@ -17,6 +17,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       APACHE_RUN_USER: www-data
       APACHE_RUN_GROUP: www-data
+    restart: always
     depends_on:
       - db
     command: >
@@ -39,6 +40,12 @@ services:
       - ${MARIADB_LOCAL_DIR}${MARIADB_ETC_DIR}:/etc/mysql
     ports:
       - ${MYSQL_PORT}:3306
+    networks:
+      - yii2net
 
 volumes:
   db_data:
+
+networks:
+  yii2net:
+    driver: bridge

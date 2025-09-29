@@ -1,6 +1,12 @@
 # DOCKER 4 Yii2 ADVANCED
 
-Starten
+**Download:**
+
+```bash
+git clone https://juergenarne@github.com/juergenarne/yii2advanced-docker-blueprint.git .
+```
+
+**Start:**
 
 ```bash
 docker-compose up --build -d
