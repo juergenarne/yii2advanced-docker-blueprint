@@ -7,8 +7,8 @@ services:
       - "${APACHE_PORT}:80"
     volumes:
       - ${APACHE_HTDOCS}:/var/www/html
-      - ${APACHE_CONF}/php.ini:/usr/local/etc/php/php.ini
-      - ${APACHE_CONF}/apache-config:/etc/apache2/sites-available
+      - ${APACHE_DIR}/php/php.ini:/usr/local/etc/php/php.ini
+      - ${APACHE_DIR}/vhosts:/etc/apache2/sites-available
     environment:
       MYSQL_HOST: db
       MYSQL_PORT: ${MYSQL_PORT}
