@@ -2,7 +2,7 @@ services:
   php-apache:
     build:
       context: ./apache
-    container_name: php-apache
+    container_name: ${APP_SHORT}-php-apache
     ports:
       - "${APACHE_PORT}:80"
     volumes:
@@ -28,7 +28,7 @@ services:
 
   db:
     image: mariadb:${MARIADB_VERSION}
-    container_name: mariadb
+    container_name: ${APP_SHORT}-mariadb
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
