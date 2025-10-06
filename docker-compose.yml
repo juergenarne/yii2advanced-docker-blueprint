@@ -17,7 +17,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       APACHE_RUN_USER: www-data
       APACHE_RUN_GROUP: www-data
-    restart: always
+    restart: unless-stopped
     depends_on:
       - db
     command: >
@@ -38,6 +38,7 @@ services:
       - ${MARIADB_LOCAL_DIR}${MARIADB_DATA_DIR}:/var/lib/mysql
       - ${MARIADB_LOCAL_DIR}${MARIADB_CONF_DIR}:/etc/mysql/conf.d
       - ${MARIADB_LOCAL_DIR}${MARIADB_ETC_DIR}:/etc/mysql
+    restart: unless-stopped
     ports:
       - ${MYSQL_PORT}:3306
     networks:
