@@ -25,6 +25,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure intl \
     && docker-php-ext-install -j$(nproc) \
        gd \
+       exif \
        intl \
        mbstring \
        pdo \
@@ -40,5 +41,7 @@ RUN pecl install imagick \
 
 # Apache modules
 RUN a2enmod rewrite headers
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
