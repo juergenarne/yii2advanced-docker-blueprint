@@ -1,3 +1,5 @@
 mariadb/data
 .DS_Store
 src/htdocs
+apache/logs
+mariadb/data
