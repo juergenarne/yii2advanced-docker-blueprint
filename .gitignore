@@ -1,6 +1,4 @@
-mariadb/data
 .DS_Store
-src/htdocs
-apache/logs
-mariadb/data
+/mariadb/data/
+/apache/logs/
 /src/htdocs/
