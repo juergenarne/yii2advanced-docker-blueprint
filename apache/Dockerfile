@@ -30,6 +30,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
        mbstring \
        pdo \
        pdo_mysql \
+       mysqli \
        opcache \
        zip
 

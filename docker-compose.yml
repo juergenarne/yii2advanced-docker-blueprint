@@ -2,13 +2,16 @@ services:
   php-apache:
     build:
       context: ./apache
-    container_name: ${APP_SHORT}-php-apache
+    # container_name: ${APP_SHORT}-php-apache
     ports:
       - "${APACHE_PORT}:80"
+    networks:
+      - yii2net
     volumes:
       - ${APACHE_HTDOCS}:/var/www/html
       - ${APACHE_DIR}/php/php.ini:/usr/local/etc/php/php.ini
       - ${APACHE_DIR}/vhosts:/etc/apache2/sites-available
+      - ${APACHE_DIR}/logs:/var/log/apache2
     environment:
       MYSQL_HOST: db
       MYSQL_PORT: ${MYSQL_PORT}
@@ -28,7 +31,7 @@ services:
 
   db:
     image: mariadb:${MARIADB_VERSION}
-    container_name: ${APP_SHORT}-mariadb
+    # container_name: ${APP_SHORT}-mariadb
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
