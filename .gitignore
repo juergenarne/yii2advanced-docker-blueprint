@@ -3,3 +3,4 @@ mariadb/data
 src/htdocs
 apache/logs
 mariadb/data
+/src/htdocs/
