@@ -2,3 +2,4 @@
 /mariadb/data/*
 /apache/logs/
 /src/htdocs/
+mariadb/data/*
