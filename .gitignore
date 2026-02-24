@@ -1,5 +1,4 @@
 .DS_Store
-/mariadb/data/*
+/mariadb/data/
 /apache/logs/
 /src/htdocs/
-mariadb/data/*
